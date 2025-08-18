@@ -126,10 +126,7 @@ export default function Portfolio() {
           name: "Observable",
           icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg",
         },
-        {
-          name: "Analytics",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
-        },
+
         {
           name: "Bizagi",
           icon: "https://play-lh.googleusercontent.com/v_uokD6H2cqEncMYNFjxVlP_4ZitMmEgzDCpD7Inx4mI0H5GRwizY0qq3EiH4MtRVg",
@@ -203,7 +200,39 @@ export default function Portfolio() {
       github: "https://github.com/TatisVivas/SistemaDeApoyoScrabble",
       demo: null,
       duration: "17 weeks",
+      team: "2 people",
+      contributors: [
+        { name: "Valeria Arenas", github: "https://github.com/ValeriaArenasB" },
+        { name: "Tatiana Vivas", github: "https://github.com/Tatisvivas" },
+      ],
       featured: true,
+    },
+    {
+      title: "PetStep – Mobile App for Dog Walking Services",
+      description: "Android mobile app designed to connect pet owners with reliable dog walkers nearby. PetStep addresses time constraints, low visibility of available walkers, and security concerns by offering real-time monitoring and seamless communication.",
+      tech: ["Kotlin", "Firebase", "XML", "JUnit", "Android", "GPS Tracking"],
+      github: "https://github.com/TatisVivas/petstepproject",
+      demo: null,
+      duration: "12 weeks",
+      team: "5 people",
+      contributors: [
+        { name: "Daniel Sandoval", github: "https://github.com/RogelioRichmanAstronaut" },
+        { name: "Daniel Perez", github: "https://github.com/Perezpdaniel" },
+        { name: "Juan Pablo Cañón", github: "https://github.com/Juanbap" },
+        { name: "Andrés Rincón", github: "https://github.com/AndresCRincon" },
+        { name: "Tatiana Vivas", github: "https://github.com/Tatisvivas" },
+      ],
+      featured: true,
+      highlight: false,
+    },
+    {
+      title: "Observable Spotify Business Model – Data Visualization Project",
+      description: "Interactive project developed with Observable to analyze Spotify's data governance and business model. It explores industry trends, challenges, and opportunities, providing recommendations to improve strategy and data practices.",
+      tech: ["ObservableHQ", "JavaScript", "Data Visualization", "Business Model Canvas"],
+      github: null,
+      demo: "https://observablehq.com/d/ff132fca675e9317",
+      duration: "2 weeks",
+      featured: false,
     },
   ]
 
@@ -664,6 +693,50 @@ export default function Portfolio() {
                         </span>
                       ))}
                     </div>
+                    {/* Project information */}
+                    {(project.duration || project.team) && (
+                      <div className="flex gap-6 mb-4 text-sm text-muted-foreground">
+                        {project.duration && (
+                          <div className="flex items-center gap-2">
+                            <span className="text-primary">📅</span>
+                            <span>{project.duration} Delivery</span>
+                          </div>
+                        )}
+                        {project.team && (
+                          <div className="relative">
+                            <button
+                              onClick={() => setShowContributors(!showContributors)}
+                              className="flex items-center gap-2 hover:text-primary transition-colors"
+                            >
+                              <Users className="h-4 w-4 text-primary" />
+                              <span>{project.team} Team</span>
+                              <ChevronDown
+                                className={`h-3 w-3 transition-transform ${showContributors ? "rotate-180" : ""}`}
+                              />
+                            </button>
+
+                            {showContributors && project.contributors && (
+                              <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-3 min-w-48 z-10">
+                                <div className="space-y-2">
+                                  {project.contributors.map((contributor, contribIndex) => (
+                                    <a
+                                      key={contribIndex}
+                                      href={contributor.github}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex items-center gap-2 p-2 rounded hover:bg-muted transition-colors text-sm"
+                                    >
+                                      <Github className="h-4 w-4 text-primary" />
+                                      <span className="text-foreground">{contributor.name}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                     <div className="flex gap-3">
                       <Button variant="outline" size="sm" asChild>
                         <a href={project.github} target="_blank" rel="noopener noreferrer">
