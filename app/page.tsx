@@ -258,6 +258,21 @@ export default function Portfolio() {
       ],
       featured: true,
     },
+    {
+      title: "TFTP Server – File Transfer Protocol Implementation",
+      description: "Developed a custom TFTP server in Python, implementing read/write requests, error handling, and file directory management over UDP.",
+      tech: ["Python", "Sockets (UDP)", "File I/O", "Networking"],
+      github: "https://github.com/TatisVivas/tftp-server",
+      demo: null,
+      duration: "1 month",
+      team: "3 people",
+      contributors: [
+        { name: "Valeria Arenas", github: "https://github.com/ValeriaArenasB" },
+        { name: "Juan Pablo Cañón", github: "https://github.com/Juanbap" },
+        { name: "Tatiana Vivas", github: "https://github.com/Tatisvivas" },
+      ],
+      featured: true,
+    },
   ]
 
   const getYouTubeVideoId = (url: string) => {
