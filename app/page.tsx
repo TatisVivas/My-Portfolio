@@ -401,13 +401,23 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="border-l-2 border-secondary pl-4">
-                  <h3 className="font-sans font-semibold text-lg">Systems Engineering & Data Science</h3>
+                  <h3 className="font-sans font-semibold text-lg">Data Science</h3>
                   <p className="text-primary font-medium">Pontifical Xavierian University • Graduation: 2026</p>
                   <p className="text-muted-foreground mt-2">
-                    Systems Engineering GPA: 4.6/5 • Data Science GPA: 4.7/5
+                    GPA: 4.7/5
                   </p>
                   <p className="text-muted-foreground mt-2">
-                    Relevant coursework: Operating systems, distributed systems, data structures, AI, software architecture, mobile & web development.
+                    Relevant coursework: Introduction to artificial intelligence, data structures, distributed systems.
+                  </p>
+                </div>
+                <div className="border-l-2 border-secondary pl-4">
+                  <h3 className="font-sans font-semibold text-lg">Systems Engineering</h3>
+                  <p className="text-primary font-medium">Pontifical Xavierian University • Graduation: 2026</p>
+                  <p className="text-muted-foreground mt-2">
+                    GPA: 4.6/5
+                  </p>
+                  <p className="text-muted-foreground mt-2">
+                    Relevant coursework: Operating systems, software architecture, mobile development, web development.
                   </p>
                 </div>
               </CardContent>
@@ -562,7 +572,7 @@ export default function Portfolio() {
 
           <div className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
-              <a href="https://github.com/anagarcia" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/Tatisvivas" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-5 w-5" />
                 View all my projects on GitHub
               </a>
