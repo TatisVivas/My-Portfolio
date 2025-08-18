@@ -207,13 +207,13 @@ export default function Portfolio() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              {["home", "about", "cv", "skills", "projects", "intereses", "contact"].map((item) => (
+              {["home", "about", "cv", "skills", "projects", "my interests", "contact"].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
                   className="text-foreground hover:text-primary transition-colors capitalize font-medium"
                 >
-                  {item === "about" ? "About Me" : item === "intereses" ? "Intereses" : item}
+                  {item === "about" ? "About Me" : item === "my interests" ? "my interests" : item}
                 </button>
               ))}
             </div>
@@ -227,13 +227,13 @@ export default function Portfolio() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-border">
-              {["home", "about", "cv", "skills", "projects", "intereses", "contact"].map((item) => (
+              {["home", "about", "cv", "skills", "projects", "my interests", "contact"].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
                   className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors capitalize"
                 >
-                  {item === "about" ? "About Me" : item === "intereses" ? "Intereses" : item}
+                  {item === "about" ? "About Me" : item === "my interests" ? "my interests" : item}
                 </button>
               ))}
             </div>
@@ -600,9 +600,9 @@ export default function Portfolio() {
       </section>
 
       {/* Interests Section */}
-      <section id="intereses" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <section id="interests" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">Mis Intereses</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">My interests</h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
             {personalInterests.map((interest, index) => (
