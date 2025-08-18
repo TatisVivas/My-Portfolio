@@ -129,11 +129,29 @@ export default function Portfolio() {
     },
   ]
 
-  const interests = [
-    { name: "Specialty Coffee", icon: Coffee, description: "Exploring different preparation methods" },
-    { name: "Photography", icon: Camera, description: "Capturing moments and urban landscapes" },
-    { name: "Music", icon: Music, description: "Playing guitar and discovering new genres" },
-    { name: "Reading", icon: BookOpen, description: "Sci-fi, technology, and personal development" },
+
+
+  const personalInterests = [
+    {
+      name: "Arts (drawing, visual design)",
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&h=600&fit=crop&crop=center",
+      description: "Watercolor and oil painting are the greatest loves of my life.",
+    },
+    {
+      name: "Piano and classical music",
+      image: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&h=600&fit=crop&crop=center",
+      description: "Finding harmony and expression through this beautiful instrument.",
+    },
+    {
+      name: "Swimming and wellness activities",
+      image: "https://images.unsplash.com/photo-1570294440392-0056ffb1124a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      description: "Maintaining physical and mental wellness through aquatic activities",
+    },
+    {
+      name: "Exploring new technologies and software development trends",
+      image: "https://images.unsplash.com/photo-1750055129957-6e757ce881dc?q=80&w=725&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      description: "Staying current with emerging technologies and development practices",
+    },
   ]
 
   const projects = [
@@ -189,13 +207,13 @@ export default function Portfolio() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              {["home", "about", "cv", "skills", "projects", "interests", "contact"].map((item) => (
+              {["home", "about", "cv", "skills", "projects", "intereses", "contact"].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
                   className="text-foreground hover:text-primary transition-colors capitalize font-medium"
                 >
-                  {item === "about" ? "About Me" : item}
+                  {item === "about" ? "About Me" : item === "intereses" ? "Intereses" : item}
                 </button>
               ))}
             </div>
@@ -209,13 +227,13 @@ export default function Portfolio() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-border">
-              {["home", "about", "cv", "skills", "projects", "interests", "contact"].map((item) => (
+              {["home", "about", "cv", "skills", "projects", "intereses", "contact"].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
                   className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors capitalize"
                 >
-                  {item === "about" ? "About Me" : item}
+                  {item === "about" ? "About Me" : item === "intereses" ? "Intereses" : item}
                 </button>
               ))}
             </div>
@@ -582,17 +600,23 @@ export default function Portfolio() {
       </section>
 
       {/* Interests Section */}
-      <section id="interests" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <section id="intereses" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">My Interests</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">Mis Intereses</h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {interests.map((interest, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all hover:-translate-y-1">
-                <CardContent className="p-6 text-center">
-                  <interest.icon className="h-12 w-12 text-secondary mx-auto mb-4" />
-                  <h3 className="font-sans font-semibold text-lg mb-2">{interest.name}</h3>
-                  <p className="text-muted-foreground text-sm">{interest.description}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
+            {personalInterests.map((interest, index) => (
+              <Card key={index} className="hover:shadow-xl transition-all hover:-translate-y-2 overflow-hidden">
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={interest.image || "/placeholder.svg"}
+                    alt={interest.name}
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="font-sans font-semibold text-lg mb-3 text-primary">{interest.name}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{interest.description}</p>
                 </CardContent>
               </Card>
             ))}
