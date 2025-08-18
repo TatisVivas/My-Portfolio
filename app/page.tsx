@@ -28,10 +28,12 @@ import {
   Award,
   GraduationCap,
   Briefcase,
+  Users,
 } from "lucide-react"
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showContributors, setShowContributors] = useState(false)
 
   const [contactName, setContactName] = useState("")
   const [contactEmail, setContactEmail] = useState("")
@@ -101,6 +103,7 @@ export default function Portfolio() {
         { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
         { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
         { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "Angular", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
       ],
     },
     {
@@ -110,6 +113,8 @@ export default function Portfolio() {
         { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
         { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
         { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+        { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+        { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
       ],
     },
     {
@@ -124,6 +129,10 @@ export default function Portfolio() {
         {
           name: "Analytics",
           icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+        },
+        {
+          name: "Bizagi",
+          icon: "https://play-lh.googleusercontent.com/v_uokD6H2cqEncMYNFjxVlP_4ZitMmEgzDCpD7Inx4mI0H5GRwizY0qq3EiH4MtRVg",
         },
       ],
     },
@@ -156,41 +165,53 @@ export default function Portfolio() {
 
   const projects = [
     {
-      title: "E-commerce Recommendation System",
+      title: "Clínica Shiba - Web System for a Veterinary Clinic",
       description:
-        "ML model that increased sales by 35% through personalized recommendations using collaborative filtering and deep learning.",
-      tech: ["Python", "TensorFlow", "AWS", "PostgreSQL"],
-      github: "https://github.com/anagarcia/ecommerce-recommender",
-      demo: "https://demo-recommender.vercel.app",
+        "Fullstack web application for a veterinary clinic, featuring an email call-to-action, AI-powered chatbot, marketplace, appointment scheduling, veterinarian CRUD, client CRUD, pet CRUD, treatment sales, and an admin dashboard for full system control and real-time clinic insights.",
+      tech: [
+        "Angular 16",
+        "Spring Boot",
+        "PostgreSQL",
+        "RESTful API",
+        "Render",
+        "Vercel",
+        "Gemini API",
+        "Docker",
+        "CI/CD Pipelines",
+      ],
+      github: "https://github.com/tavaju",
+      frontendRepo: "https://github.com/tavaju/ClinicaShibaAngular",
+      backendRepo: "https://github.com/tavaju/ClinicaShibaSB",
+      demo: "https://clinica-shiba-angular-theta.vercel.app/",
+      videoUrl: "https://youtu.be/bHey_1XL8XM",
+      duration: "18 weeks",
+      team: "3 people",
+      contributors: [
+        { name: "Valeria Arenas", github: "https://github.com/ValeriaArenasB" },
+        { name: "Juan Pablo Cañón", github: "https://github.com/Juanbap" },
+        { name: "Tatiana Vivas", github: "https://github.com/Tatisvivas" },
+      ],
       featured: true,
+      highlight: true,
     },
+
+
     {
-      title: "Real-time Analytics Dashboard",
-      description:
-        "Web platform for visualizing business metrics with real-time updates and automatic alerts.",
-      tech: ["React", "D3.js", "Node.js", "MongoDB"],
-      github: "https://github.com/anagarcia/realtime-dashboard",
-      demo: "https://analytics-dashboard-demo.vercel.app",
-      featured: true,
-    },
-    {
-      title: "Real Estate Price Predictor",
-      description:
-        "API that predicts property prices using advanced regression and market analysis with 92% accuracy.",
-      tech: ["Python", "Scikit-learn", "FastAPI", "Docker"],
-      github: "https://github.com/anagarcia/price-predictor",
+      title: "Scrabble Support System – Console App for Word Validation and Strategy",
+      description: "Console-based application developed for a Data Structures course to support the board game Scrabble. It implements advanced data structures for word search, validation, scoring, and generating strategic suggestions.",
+      tech: ["C++", "GNU g++", "Makefile", "Console I/O"],
+      github: "https://github.com/TatisVivas/SistemaDeApoyoScrabble",
       demo: null,
-      featured: false,
-    },
-    {
-      title: "Intelligent Support Chatbot",
-      description: "Conversational bot with NLP that reduced support tickets by 60% using transformers and fine-tuning.",
-      tech: ["Python", "Transformers", "Flask", "Redis"],
-      github: "https://github.com/anagarcia/support-chatbot",
-      demo: "https://chatbot-demo.vercel.app",
-      featured: false,
+      duration: "17 weeks",
+      featured: true,
     },
   ]
+
+  const getYouTubeVideoId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    const match = url.match(regExp)
+    return match && match[2].length === 11 ? match[2] : null
+  }
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
@@ -500,10 +521,125 @@ export default function Portfolio() {
             A selection of my most outstanding works in data science and software development
           </p>
 
+          {projects
+            .filter((project) => project.highlight)
+            .map((project, index) => (
+              <Card
+                key={index}
+                className="hover:shadow-2xl transition-all hover:-translate-y-2 border-primary/30 mb-12"
+              >
+                <div className="grid lg:grid-cols-2 gap-0">
+                  <div className="aspect-video lg:aspect-auto overflow-hidden">
+                    {project.videoUrl && getYouTubeVideoId(project.videoUrl) && (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${getYouTubeVideoId(project.videoUrl)}`}
+                        title={project.title}
+                        className="w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    )}
+                  </div>
+
+                  {/* Project content */}
+                  <div className="p-8">
+                    <CardTitle className="font-sans text-2xl mb-4 text-foreground">{project.title}</CardTitle>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">{project.description}</p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tech.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Project information */}
+                    <div className="flex gap-6 mb-6 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <span className="text-primary">📅</span>
+                        <span>{project.duration} Delivery</span>
+                      </div>
+                      <div className="relative">
+                        <button
+                          onClick={() => setShowContributors(!showContributors)}
+                          className="flex items-center gap-2 hover:text-primary transition-colors"
+                        >
+                          <Users className="h-4 w-4 text-primary" />
+                          <span>{project.team} Team</span>
+                          <ChevronDown
+                            className={`h-3 w-3 transition-transform ${showContributors ? "rotate-180" : ""}`}
+                          />
+                        </button>
+
+                        {showContributors && project.contributors && (
+                          <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-3 min-w-48 z-10">
+                            <div className="space-y-2">
+                              {project.contributors.map((contributor, contribIndex) => (
+                                <a
+                                  key={contribIndex}
+                                  href={contributor.github}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-2 p-2 rounded hover:bg-muted transition-colors text-sm"
+                                >
+                                  <Github className="h-4 w-4 text-primary" />
+                                  <span className="text-foreground">{contributor.name}</span>
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Action buttons */}
+                    <div className="flex flex-wrap gap-3">
+                      {project.demo && (
+                        <Button size="sm" asChild className="bg-primary hover:bg-primary/90">
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Try it Live
+                          </a>
+                        </Button>
+                      )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="border-primary text-primary hover:bg-primary/10 bg-transparent"
+                      >
+                        <a href={project.frontendRepo || project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Frontend Source Code
+                        </a>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="border-primary text-primary hover:bg-primary/10 bg-transparent"
+                      >
+                        <a href={project.backendRepo || project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Backend Source Code
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+
           {/* Featured Projects */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {projects
-              .filter((project) => project.featured)
+              .filter((project) => project.featured && !project.highlight)
               .map((project, index) => (
                 <Card key={index} className="hover:shadow-xl transition-all hover:-translate-y-1 border-primary/20">
                   <CardHeader>
