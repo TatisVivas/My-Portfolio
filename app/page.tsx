@@ -200,10 +200,11 @@ export default function Portfolio() {
       github: "https://github.com/TatisVivas/SistemaDeApoyoScrabble",
       demo: null,
       duration: "17 weeks",
-      team: "2 people",
+      team: "3 people",
       contributors: [
         { name: "Valeria Arenas", github: "https://github.com/ValeriaArenasB" },
         { name: "Tatiana Vivas", github: "https://github.com/Tatisvivas" },
+        { name: "Mariana Osorio", github: "https://github.com/mariana-osoriov827" },
       ],
       featured: true,
     },
@@ -232,7 +233,30 @@ export default function Portfolio() {
       github: null,
       demo: "https://observablehq.com/d/ff132fca675e9317",
       duration: "2 weeks",
-      featured: false,
+      featured: true,
+    },
+    {
+      title: "Apple Historic Review – Data Visualization in Power BI",
+      description: "Comprehensive analysis of Apple's financial, sales, and customer data to identify trends, strategic opportunities, and market positioning.",
+      tech: ["Python", "Power BI", "Power Query", "Data Modeling"],
+      github: null,
+      demo: "/EntregaFinalProyecto-VisualizaciónDeDatos.pdf",
+      duration: "3 weeks",
+      featured: true,
+    },
+    {
+      title: "Free Flow Game – Puzzle with Auto-Solving Algorithms",
+      description: "Frontend puzzle game built with Angular 16 where players connect pairs of numbers without overlapping paths. Includes an AI-based auto-solver and statistical analysis of solutions.",
+      tech: ["Angular 16", "TypeScript", "TailwindCSS", "RxJS"],
+      github: "https://github.com/TatisVivas/freeflow",
+      demo: "https://freeflow-vwys.vercel.app/",
+      duration: "1 month",
+      team: "2 people",
+      contributors: [
+        { name: "Juan Pablo Cañón", github: "https://github.com/Juanbap" },
+        { name: "Tatiana Vivas", github: "https://github.com/Tatisvivas" },
+      ],
+      featured: true,
     },
   ]
 
@@ -738,12 +762,14 @@ export default function Portfolio() {
                       </div>
                     )}
                     <div className="flex gap-3">
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" />
-                          Code
-                        </a>
-                      </Button>
+                      {project.github && (
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                      )}
                       {project.demo && (
                         <Button size="sm" asChild>
                           <a href={project.demo} target="_blank" rel="noopener noreferrer">
