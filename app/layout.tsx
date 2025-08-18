@@ -21,6 +21,15 @@ export const metadata: Metadata = {
   description:
     "Portafolio personal de una ingeniera de sistemas y científica de datos apasionada por la tecnología y la innovación.",
   generator: "v0.app",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
