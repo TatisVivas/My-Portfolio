@@ -33,7 +33,7 @@ import {
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [showContributors, setShowContributors] = useState(false)
+  const [openContributorsKey, setOpenContributorsKey] = useState<string | null>(null)
 
   const [contactName, setContactName] = useState("")
   const [contactEmail, setContactEmail] = useState("")
@@ -191,7 +191,29 @@ export default function Portfolio() {
       featured: true,
       highlight: true,
     },
-
+    {
+      title: "Planifika — Educational Project Management Platform (DrimSoft)",
+      description:
+        "Planifika is a DrimSoft web platform for educational institutions: centralized project management with planning, monitoring, reporting, and RBAC. I rotated across Scrum, Product Owner, development, QA, and DevOps—shipping from backlog clarity to production. Architecture: microservices behind an API gateway, REST APIs with JWT, Docker, and GitHub Actions CI/CD. Quality and reliability drew on JUnit, Selenium, Postman/Newman, JMeter, and ISO 25010 (performance, scalability, security, maintainability).",
+      tech: [
+        "Microservices",
+        "API Gateway",
+        "REST APIs",
+        "JWT",
+        "Docker",
+        "GitHub Actions",
+        "JUnit",
+        "Selenium",
+        "Postman / Newman",
+        "JMeter",
+        "ISO 25010",
+      ],
+      github: "https://github.com/Drim-Soft",
+      demo: null,
+      duration: "17 weeks",
+      team: "12 people",
+      featured: true,
+    },
 
     {
       title: "Scrabble Support System – Console App for Word Validation and Strategy",
@@ -245,6 +267,17 @@ export default function Portfolio() {
       featured: true,
     },
     {
+      title: "Energy Consumption (BSTS)",
+      description:
+        "Developed a predictive analysis model to compare energy consumption trends between G7 and BRICS countries using Bayesian Structural Time Series (BSTS). The work centered on modeling temporal patterns and surfacing structural differences in energy behavior across major economies. Implemented in R, the approach supported probabilistic forecasting and scenario analysis. Along the way it deepened my practice with time series data, statistical modeling, and translating results into real-world interpretation.",
+      tech: ["R", "BSTS", "Time Series", "Bayesian inference", "Forecasting"],
+      github: null,
+      demo: null,
+      duration: "2 weeks",
+      team: "4 people",
+      featured: true,
+    },
+    {
       title: "Free Flow Game – Puzzle with Auto-Solving Algorithms",
       description: "Frontend puzzle game built with Angular 16 where players connect pairs of numbers without overlapping paths. Includes an AI-based auto-solver and statistical analysis of solutions.",
       tech: ["Angular 16", "TypeScript", "TailwindCSS", "RxJS"],
@@ -272,6 +305,28 @@ export default function Portfolio() {
         { name: "Tatiana Vivas", github: "https://github.com/Tatisvivas" },
       ],
       featured: true,
+    },
+    {
+      title: "WhatsApp Chat Visualizer",
+      description:
+        "A client-side TypeScript tool that parses WhatsApp-exported `.txt` chats and renders them as an interactive, WhatsApp-style thread—bubble layout, colors, avatars with initials, and drag-and-drop or click-to-upload. The parser turns raw lines into structured messages you can scan for behavioral and communication patterns; everything runs in the browser with React 19 and Vite 7, no backend required.",
+      tech: ["React 19", "Vite 7", "TypeScript", "CSS3"],
+      github: "https://github.com/TatisVivas/WhatsappChatVisualizer",
+      demo: "https://whatsapp-chat-visualizer.vercel.app",
+      duration: "2026",
+      featured: false,
+      personal: true,
+    },
+    {
+      title: "Rate by Recommendation",
+      description:
+        "A movie web app built on The Movie Database (TMDb): real-time search, 1–5 star ratings, optional text reviews, a personal watchlist, and recommendations informed by what you save—plus light/dark themes and English/Spanish UI. React 19 on the frontend with Supabase handling profiles, preferences, watchlist, and stored reviews.",
+      tech: ["React 19", "JavaScript", "Supabase", "TMDb API", "CSS3"],
+      github: "https://github.com/TatisVivas/Rate-by-Recommendation",
+      demo: "https://rate-by-recommendation.vercel.app",
+      duration: "2026",
+      featured: false,
+      personal: true,
     },
   ]
 
@@ -479,6 +534,24 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="border-l-2 border-primary pl-4">
+                  <h3 className="font-sans font-semibold text-lg">Spiriwors — Frontend (PRANA)</h3>
+                  <p className="text-secondary font-medium">
+                    PRANA ·{" "}
+                    <a
+                      href="https://www.spiriwors.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline inline-flex items-center gap-1"
+                    >
+                      spiriwors.com
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </p>
+                  <p className="text-muted-foreground mt-2">
+                    Spiriwors is a PRANA project where the creative direction had to feel just as intentional in the browser as on paper. I owned the frontend: shaping a cohesive, responsive experience with Next.js, React, TypeScript, and Tailwind CSS, and keeping interactions snappy as we iterated. As the frontend developer, my impact was in translation—turning stakeholder and artistic feedback into reusable components, solid responsive layouts, and a performance-minded architecture that reduced rework and made the UI easier to extend without rewiring the whole app.
+                  </p>
+                </div>
+                <div className="border-l-2 border-primary pl-4">
                   <h3 className="font-sans font-semibold text-lg">Administrative Monitor</h3>
                   <p className="text-secondary font-medium">Pontifical Xavierian University • Bogotá • 2025</p>
                   <p className="text-muted-foreground mt-2">
@@ -490,13 +563,6 @@ export default function Portfolio() {
                   <p className="text-secondary font-medium">Pontifical Xavierian University • Bogotá • 2024</p>
                   <p className="text-muted-foreground mt-2">
                     Provided programming tutorials in C, C++, and Java, designed interactive workshops, and monitored student progress with personalized support.
-                  </p>
-                </div>
-                <div className="border-l-2 border-primary pl-4">
-                  <h3 className="font-sans font-semibold text-lg">Front-end Developer</h3>
-                  <p className="text-secondary font-medium">Synnectia • Bucaramanga • 2025</p>
-                  <p className="text-muted-foreground mt-2">
-                    Developing responsive web solutions, optimizing performance, and enhancing digital presence through modern web technologies.
                   </p>
                 </div>
               </CardContent>
@@ -633,37 +699,50 @@ export default function Portfolio() {
                         <span className="text-primary">📅</span>
                         <span>{project.duration} Delivery</span>
                       </div>
-                      <div className="relative">
-                        <button
-                          onClick={() => setShowContributors(!showContributors)}
-                          className="flex items-center gap-2 hover:text-primary transition-colors"
-                        >
-                          <Users className="h-4 w-4 text-primary" />
-                          <span>{project.team} Team</span>
-                          <ChevronDown
-                            className={`h-3 w-3 transition-transform ${showContributors ? "rotate-180" : ""}`}
-                          />
-                        </button>
+                      {project.team &&
+                        (project.contributors && project.contributors.length > 0 ? (
+                          <div className="relative">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setOpenContributorsKey(
+                                  openContributorsKey === project.title ? null : project.title,
+                                )
+                              }
+                              className="flex items-center gap-2 hover:text-primary transition-colors"
+                            >
+                              <Users className="h-4 w-4 text-primary" />
+                              <span>{project.team} Team</span>
+                              <ChevronDown
+                                className={`h-3 w-3 transition-transform ${openContributorsKey === project.title ? "rotate-180" : ""}`}
+                              />
+                            </button>
 
-                        {showContributors && project.contributors && (
-                          <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-3 min-w-48 z-10">
-                            <div className="space-y-2">
-                              {project.contributors.map((contributor, contribIndex) => (
-                                <a
-                                  key={contribIndex}
-                                  href={contributor.github}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center gap-2 p-2 rounded hover:bg-muted transition-colors text-sm"
-                                >
-                                  <Github className="h-4 w-4 text-primary" />
-                                  <span className="text-foreground">{contributor.name}</span>
-                                </a>
-                              ))}
-                            </div>
+                            {openContributorsKey === project.title && project.contributors && (
+                              <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-3 min-w-48 z-10">
+                                <div className="space-y-2">
+                                  {project.contributors.map((contributor, contribIndex) => (
+                                    <a
+                                      key={contribIndex}
+                                      href={contributor.github}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex items-center gap-2 p-2 rounded hover:bg-muted transition-colors text-sm"
+                                    >
+                                      <Github className="h-4 w-4 text-primary" />
+                                      <span className="text-foreground">{contributor.name}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <Users className="h-4 w-4 text-primary" />
+                            <span>{project.team} Team</span>
+                          </div>
+                        ))}
                     </div>
 
                     {/* Action buttons */}
@@ -741,39 +820,50 @@ export default function Portfolio() {
                             <span>{project.duration} Delivery</span>
                           </div>
                         )}
-                        {project.team && (
-                          <div className="relative">
-                            <button
-                              onClick={() => setShowContributors(!showContributors)}
-                              className="flex items-center gap-2 hover:text-primary transition-colors"
-                            >
+                        {project.team &&
+                          (project.contributors && project.contributors.length > 0 ? (
+                            <div className="relative">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setOpenContributorsKey(
+                                    openContributorsKey === project.title ? null : project.title,
+                                  )
+                                }
+                                className="flex items-center gap-2 hover:text-primary transition-colors"
+                              >
+                                <Users className="h-4 w-4 text-primary" />
+                                <span>{project.team} Team</span>
+                                <ChevronDown
+                                  className={`h-3 w-3 transition-transform ${openContributorsKey === project.title ? "rotate-180" : ""}`}
+                                />
+                              </button>
+
+                              {openContributorsKey === project.title && project.contributors && (
+                                <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-3 min-w-48 z-10">
+                                  <div className="space-y-2">
+                                    {project.contributors.map((contributor, contribIndex) => (
+                                      <a
+                                        key={contribIndex}
+                                        href={contributor.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 p-2 rounded hover:bg-muted transition-colors text-sm"
+                                      >
+                                        <Github className="h-4 w-4 text-primary" />
+                                        <span className="text-foreground">{contributor.name}</span>
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-2">
                               <Users className="h-4 w-4 text-primary" />
                               <span>{project.team} Team</span>
-                              <ChevronDown
-                                className={`h-3 w-3 transition-transform ${showContributors ? "rotate-180" : ""}`}
-                              />
-                            </button>
-
-                            {showContributors && project.contributors && (
-                              <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-3 min-w-48 z-10">
-                                <div className="space-y-2">
-                                  {project.contributors.map((contributor, contribIndex) => (
-                                    <a
-                                      key={contribIndex}
-                                      href={contributor.github}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="flex items-center gap-2 p-2 rounded hover:bg-muted transition-colors text-sm"
-                                    >
-                                      <Github className="h-4 w-4 text-primary" />
-                                      <span className="text-foreground">{contributor.name}</span>
-                                    </a>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        )}
+                            </div>
+                          ))}
                       </div>
                     )}
                     <div className="flex gap-3">
@@ -799,10 +889,115 @@ export default function Portfolio() {
               ))}
           </div>
 
+          {/* Personal Projects */}
+          <h3 className="font-sans text-2xl md:text-3xl font-bold text-center mb-4 mt-4">Personal Projects</h3>
+          <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
+            Side projects I ship end-to-end—frontend tooling, data on the wire, and polished UX.
+          </p>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {projects
+              .filter((project) => project.personal)
+              .map((project) => (
+                <Card key={project.title} className="hover:shadow-xl transition-all hover:-translate-y-1 border-primary/20">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="font-sans text-xl mb-2">{project.title}</CardTitle>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    {(project.duration || project.team) && (
+                      <div className="flex gap-6 mb-4 text-sm text-muted-foreground">
+                        {project.duration && (
+                          <div className="flex items-center gap-2">
+                            <span className="text-primary">📅</span>
+                            <span>{project.duration}</span>
+                          </div>
+                        )}
+                        {project.team &&
+                          (project.contributors && project.contributors.length > 0 ? (
+                            <div className="relative">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setOpenContributorsKey(
+                                    openContributorsKey === project.title ? null : project.title,
+                                  )
+                                }
+                                className="flex items-center gap-2 hover:text-primary transition-colors"
+                              >
+                                <Users className="h-4 w-4 text-primary" />
+                                <span>{project.team} Team</span>
+                                <ChevronDown
+                                  className={`h-3 w-3 transition-transform ${openContributorsKey === project.title ? "rotate-180" : ""}`}
+                                />
+                              </button>
+                              {openContributorsKey === project.title && project.contributors && (
+                                <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-3 min-w-48 z-10">
+                                  <div className="space-y-2">
+                                    {project.contributors.map((contributor, contribIndex) => (
+                                      <a
+                                        key={contribIndex}
+                                        href={contributor.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 p-2 rounded hover:bg-muted transition-colors text-sm"
+                                      >
+                                        <Github className="h-4 w-4 text-primary" />
+                                        <span className="text-foreground">{contributor.name}</span>
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-2">
+                              <Users className="h-4 w-4 text-primary" />
+                              <span>{project.team} Team</span>
+                            </div>
+                          ))}
+                      </div>
+                    )}
+                    <div className="flex gap-3 flex-wrap">
+                      {project.github && (
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                      )}
+                      {project.demo && (
+                        <Button size="sm" asChild>
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Demo
+                          </a>
+                        </Button>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+
           {/* Other Projects */}
           <div className="grid md:grid-cols-2 gap-6">
             {projects
-              .filter((project) => !project.featured)
+              .filter((project) => !project.featured && !project.personal)
               .map((project, index) => (
                 <Card key={index} className="hover:shadow-lg transition-all hover:-translate-y-1">
                   <CardHeader className="pb-3">
