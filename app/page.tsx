@@ -115,11 +115,19 @@ export default function Portfolio() {
         { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
         { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
         { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+        {
+          name: "REST APIs / API Design",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg",
+        },
       ],
     },
     {
       title: "Data & Analytics",
       skills: [
+        {
+          name: "PySpark / Apache Spark",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg",
+        },
         { name: "PowerBI", icon: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
         { name: "Tableau", icon: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg" },
         {
@@ -210,9 +218,11 @@ export default function Portfolio() {
       ],
       github: "https://github.com/Drim-Soft",
       demo: null,
+      videoUrl: "https://youtu.be/Oi_r0BV7PU8?si=VarbZLf43wj82NS_",
       duration: "17 weeks",
       team: "12 people",
       featured: true,
+      highlight: true,
     },
 
     {
