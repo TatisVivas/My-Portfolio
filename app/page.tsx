@@ -34,12 +34,25 @@ import {
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openContributorsKey, setOpenContributorsKey] = useState<string | null>(null)
+  const [language, setLanguage] = useState<"en" | "es">("en")
 
   const [contactName, setContactName] = useState("")
   const [contactEmail, setContactEmail] = useState("")
   const [contactMessage, setContactMessage] = useState("")
   const [isSending, setIsSending] = useState(false)
   const [sendResult, setSendResult] = useState<"idle" | "success" | "error">("idle")
+  const isSpanish = language === "es"
+  const cvHref = isSpanish ? "/Tatiana_Vivas_CV_ES.pdf" : "/Tatiana_Vivas_CV.pdf"
+  const cvFileName = isSpanish ? "Tatiana_Vivas_CV_ES.pdf" : "Tatiana_Vivas_CV.pdf"
+  const navItems = [
+    { id: "home", label: isSpanish ? "Inicio" : "Home" },
+    { id: "about", label: isSpanish ? "Sobre mí" : "About Me" },
+    { id: "cv", label: "CV" },
+    { id: "skills", label: isSpanish ? "Habilidades" : "Skills" },
+    { id: "projects", label: isSpanish ? "Proyectos" : "Projects" },
+    { id: "interests", label: isSpanish ? "Intereses" : "My Interests" },
+    { id: "contact", label: isSpanish ? "Contacto" : "Contact" },
+  ]
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -78,7 +91,7 @@ export default function Portfolio() {
 
   const skillCategories = [
     {
-      title: "Languages",
+      title: isSpanish ? "Lenguajes" : "Languages",
       skills: [
         {
           name: "JavaScript",
@@ -107,7 +120,7 @@ export default function Portfolio() {
       ],
     },
     {
-      title: "Backend & Databases",
+      title: isSpanish ? "Backend y Bases de Datos" : "Backend & Databases",
       skills: [
         { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
         { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
@@ -122,7 +135,7 @@ export default function Portfolio() {
       ],
     },
     {
-      title: "Data & Analytics",
+      title: isSpanish ? "Datos y Analítica" : "Data & Analytics",
       skills: [
         {
           name: "PySpark / Apache Spark",
@@ -147,24 +160,34 @@ export default function Portfolio() {
 
   const personalInterests = [
     {
-      name: "Arts (drawing, visual design)",
+      name: isSpanish ? "Arte (dibujo y diseño visual)" : "Arts (drawing, visual design)",
       image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&h=600&fit=crop&crop=center",
-      description: "Watercolor and oil painting are the greatest loves of my life.",
+      description: isSpanish
+        ? "La acuarela y la pintura al óleo son dos de las pasiones más grandes de mi vida."
+        : "Watercolor and oil painting are the greatest loves of my life.",
     },
     {
-      name: "Piano and classical music",
+      name: isSpanish ? "Piano y música clásica" : "Piano and classical music",
       image: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&h=600&fit=crop&crop=center",
-      description: "Finding harmony and expression through this beautiful instrument.",
+      description: isSpanish
+        ? "Encuentro armonía y expresión a través de este hermoso instrumento."
+        : "Finding harmony and expression through this beautiful instrument.",
     },
     {
-      name: "Swimming and wellness activities",
+      name: isSpanish ? "Natación y actividades de bienestar" : "Swimming and wellness activities",
       image: "https://images.unsplash.com/photo-1570294440392-0056ffb1124a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description: "Maintaining physical and mental wellness through aquatic activities",
+      description: isSpanish
+        ? "Mantengo mi bienestar físico y mental a través de actividades acuáticas."
+        : "Maintaining physical and mental wellness through aquatic activities",
     },
     {
-      name: "Exploring new technologies and software development trends",
+      name: isSpanish
+        ? "Explorar nuevas tecnologías y tendencias de desarrollo de software"
+        : "Exploring new technologies and software development trends",
       image: "https://images.unsplash.com/photo-1750055129957-6e757ce881dc?q=80&w=725&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description: "Staying current with emerging technologies and development practices",
+      description: isSpanish
+        ? "Me mantengo al día con tecnologías emergentes y buenas prácticas de desarrollo."
+        : "Staying current with emerging technologies and development practices",
     },
   ]
 
@@ -340,6 +363,76 @@ export default function Portfolio() {
     },
   ]
 
+  const projectTranslations: Record<string, { title: string; description: string }> = {
+    "Clínica Shiba - Web System for a Veterinary Clinic": {
+      title: "Clínica Shiba - Sistema web para clínica veterinaria",
+      description:
+        "Aplicación web fullstack para una clínica veterinaria con llamada a la acción por correo, chatbot con IA, marketplace, agendamiento de citas, CRUD de veterinarios/clientes/mascotas, venta de tratamientos y panel administrativo con control total e información en tiempo real.",
+    },
+    "Planifika — Educational Project Management Platform (DrimSoft)": {
+      title: "Planifika — Plataforma de gestión de proyectos educativos (DrimSoft)",
+      description:
+        "Planifika es una plataforma web de DrimSoft para instituciones educativas: gestión centralizada de proyectos con planeación, seguimiento, reportes y RBAC. Participé en Scrum, Product Owner, desarrollo, QA y DevOps, llevando el trabajo desde el backlog hasta producción.",
+    },
+    "Scrabble Support System – Console App for Word Validation and Strategy": {
+      title: "Sistema de apoyo Scrabble – App de consola para validación y estrategia",
+      description:
+        "Aplicación de consola desarrollada en la materia de Estructuras de Datos para apoyar el juego Scrabble. Implementa estructuras de datos avanzadas para búsqueda de palabras, validación, puntaje y sugerencias estratégicas.",
+    },
+    "PetStep – Mobile App for Dog Walking Services": {
+      title: "PetStep – App móvil para paseadores de perros",
+      description:
+        "Aplicación móvil Android para conectar dueños de mascotas con paseadores confiables cercanos. PetStep aborda limitaciones de tiempo, baja visibilidad de paseadores y preocupaciones de seguridad mediante monitoreo en tiempo real y comunicación fluida.",
+    },
+    "Observable Spotify Business Model – Data Visualization Project": {
+      title: "Modelo de negocio de Spotify en Observable – Proyecto de visualización de datos",
+      description:
+        "Proyecto interactivo desarrollado en Observable para analizar la gobernanza de datos y el modelo de negocio de Spotify. Explora tendencias del sector, desafíos y oportunidades, con recomendaciones para mejorar estrategia y prácticas de datos.",
+    },
+    "Apple Historic Review – Data Visualization in Power BI": {
+      title: "Análisis histórico de Apple – Visualización de datos en Power BI",
+      description:
+        "Análisis integral de datos financieros, de ventas y de clientes de Apple para identificar tendencias, oportunidades estratégicas y posicionamiento de mercado.",
+    },
+    "Energy Consumption (BSTS)": {
+      title: "Consumo energético (BSTS)",
+      description:
+        "Modelo predictivo para comparar tendencias de consumo energético entre países del G7 y BRICS usando Bayesian Structural Time Series (BSTS), enfocado en patrones temporales, diferencias estructurales y pronóstico probabilístico.",
+    },
+    "Free Flow Game – Puzzle with Auto-Solving Algorithms": {
+      title: "Free Flow Game – Rompecabezas con algoritmos de auto-solución",
+      description:
+        "Juego tipo puzzle en frontend con Angular 16 donde se conectan pares de números sin cruzar rutas. Incluye auto-solucionador con IA y análisis estadístico de soluciones.",
+    },
+    "TFTP Server – File Transfer Protocol Implementation": {
+      title: "Servidor TFTP – Implementación del protocolo de transferencia de archivos",
+      description:
+        "Servidor TFTP personalizado en Python con soporte de solicitudes de lectura/escritura, manejo de errores y administración de archivos sobre UDP.",
+    },
+    "WhatsApp Chat Visualizer": {
+      title: "Visualizador de chats de WhatsApp",
+      description:
+        "Herramienta en TypeScript del lado del cliente que procesa chats exportados en `.txt` y los muestra como hilo interactivo estilo WhatsApp, con burbujas, colores, avatares y carga por arrastrar o clic, todo en el navegador.",
+    },
+    "Rate by Recommendation": {
+      title: "Rate by Recommendation",
+      description:
+        "App web de películas sobre TMDb: búsqueda en tiempo real, calificación de 1 a 5 estrellas, reseñas opcionales, watchlist personal y recomendaciones según tus guardados, con tema claro/oscuro e interfaz en inglés/español.",
+    },
+  }
+
+  const renderedProjects = projects.map((project) => {
+    if (!isSpanish) return project
+    const translation = projectTranslations[project.title]
+    return {
+      ...project,
+      title: translation?.title || project.title,
+      description: translation?.description || project.description,
+      duration: project.duration.replace("weeks", "semanas").replace("month", "mes"),
+      team: project.team?.replace("people", "personas"),
+    }
+  })
+
   const getYouTubeVideoId = (url: string) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
     const match = url.match(regExp)
@@ -357,19 +450,23 @@ export default function Portfolio() {
       <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="font-sans font-bold text-xl text-primary">My Portfolio</div>
+            <div className="font-sans font-bold text-xl text-primary">{isSpanish ? "Mi Portafolio" : "My Portfolio"}</div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
-              {["home", "about", "cv", "skills", "projects", "my interests", "contact"].map((item) => (
+            <div className="hidden md:flex space-x-6 items-center">
+              {navItems.map((item) => (
                 <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
                   className="text-foreground hover:text-primary transition-colors capitalize font-medium"
                 >
-                  {item === "about" ? "About Me" : item === "my interests" ? "my interests" : item}
+                  {item.label}
                 </button>
               ))}
+              <Button variant="outline" size="sm" onClick={() => setLanguage(isSpanish ? "en" : "es")} className="border-primary/40">
+                <Globe className="h-4 w-4 mr-2" />
+                {isSpanish ? "ES" : "EN"}
+              </Button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -381,13 +478,19 @@ export default function Portfolio() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-border">
-              {["home", "about", "cv", "skills", "projects", "my interests", "contact"].map((item) => (
+              <div className="mb-3">
+                <Button variant="outline" size="sm" onClick={() => setLanguage(isSpanish ? "en" : "es")} className="border-primary/40">
+                  <Globe className="h-4 w-4 mr-2" />
+                  {isSpanish ? "Cambiar a inglés" : "Switch to Spanish"}
+                </Button>
+              </div>
+              {navItems.map((item) => (
                 <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
                   className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors capitalize"
                 >
-                  {item === "about" ? "About Me" : item === "my interests" ? "my interests" : item}
+                  {item.label}
                 </button>
               ))}
             </div>
@@ -402,23 +505,26 @@ export default function Portfolio() {
             <div className="mb-8">
               <img
                 src="/foto Tatis.png"
-                alt="Professional photo"
+                alt={isSpanish ? "Foto profesional" : "Professional photo"}
                 className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-primary/20"
               />
             </div>
             <h1 className="font-sans text-4xl md:text-6xl font-bold text-foreground mb-4">
-              Hello! I'm <span className="text-primary">Tatiana Vivas</span>
+              {isSpanish ? "¡Hola! Soy " : "Hello! I'm "}
+              <span className="text-primary">Tatiana Vivas</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto">
-              Systems Engineering Student & Data Scientist passionate about technology and innovative solutions
+              {isSpanish
+                ? "Estudiante de Ingeniería de Sistemas y Ciencia de Datos, apasionada por la tecnología y las soluciones innovadoras"
+                : "Systems Engineering Student & Data Scientist passionate about technology and innovative solutions"}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="font-medium" onClick={() => scrollToSection("about")}>
-                Learn more about me
+                {isSpanish ? "Conoce más sobre mí" : "Learn more about me"}
                 <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
               <Button variant="outline" size="lg" onClick={() => scrollToSection("contact")}>
-                Contact
+                {isSpanish ? "Contacto" : "Contact"}
                 <Mail className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -429,7 +535,7 @@ export default function Portfolio() {
       {/* About Me Section */}
       <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">{isSpanish ? "Sobre mí" : "About Me"}</h2>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Personal description */}
@@ -437,16 +543,14 @@ export default function Portfolio() {
               <Card className="h-full">
                 <CardContent className="p-8">
                   <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                    University student with high interest in software development and data analysis. I always stay open and active in learning new technologies and methodologies, and I get involved with commitment in each project. I enjoy working in teams, taking on challenges, and continuously improving my technical profile.
-
-                    My passion for technology has led me to explore different areas, from web development to data science, always seeking innovative ways to solve complex problems and create solutions that generate positive impact.
-
-                    At a personal level, I’m an empathetic and family-oriented person who values emotional connection and shared growth. I make space to prioritize my well-being and enjoy doing meaningful things for myself and the people I care about. These values keep me grounded and motivated in both my personal and professional life.
+                    {isSpanish
+                      ? "Soy estudiante universitaria con alto interés en el desarrollo de software y el análisis de datos. Siempre me mantengo abierta y activa al aprendizaje de nuevas tecnologías y metodologías, y me involucro con compromiso en cada proyecto. Disfruto trabajar en equipo, asumir retos y mejorar continuamente mi perfil técnico."
+                      : "University student with high interest in software development and data analysis. I always stay open and active in learning new technologies and methodologies, and I get involved with commitment in each project. I enjoy working in teams, taking on challenges, and continuously improving my technical profile."}
                   </p>
                   <p className="text-muted-foreground">
-                    My passion for technology has led me to explore different areas, from web development to
-                    data science, always seeking innovative ways to solve complex problems and create
-                    solutions that generate positive impact.
+                    {isSpanish
+                      ? "Mi pasión por la tecnología me ha llevado a explorar distintas áreas, desde el desarrollo web hasta la ciencia de datos, buscando siempre formas innovadoras de resolver problemas complejos y crear soluciones con impacto positivo."
+                      : "My passion for technology has led me to explore different areas, from web development to data science, always seeking innovative ways to solve complex problems and create solutions that generate positive impact."}
                   </p>
                 </CardContent>
               </Card>
@@ -454,7 +558,7 @@ export default function Portfolio() {
 
             {/* Quick Facts */}
             <div className="space-y-4">
-              <h3 className="font-sans text-xl font-semibold mb-6">Quick Facts</h3>
+              <h3 className="font-sans text-xl font-semibold mb-6">{isSpanish ? "Datos rápidos" : "Quick Facts"}</h3>
 
               <Card className="hover:shadow-lg transition-all">
                 <CardContent className="p-4">
@@ -463,9 +567,9 @@ export default function Portfolio() {
                       <Award className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm">Academic Excellence</h4>
-                      <p className="text-xs text-muted-foreground">6 university recognitions</p>
-                      <p className="text-xs text-muted-foreground">11 school recognitions</p>
+                      <h4 className="font-semibold text-sm">{isSpanish ? "Excelencia académica" : "Academic Excellence"}</h4>
+                      <p className="text-xs text-muted-foreground">{isSpanish ? "6 reconocimientos universitarios" : "6 university recognitions"}</p>
+                      <p className="text-xs text-muted-foreground">{isSpanish ? "11 reconocimientos escolares" : "11 school recognitions"}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -478,8 +582,8 @@ export default function Portfolio() {
                       <GraduationCap className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm">Systems Engineering</h4>
-                      <p className="text-xs text-muted-foreground">Graduation June 2026</p>
+                      <h4 className="font-semibold text-sm">{isSpanish ? "Ingeniería de Sistemas" : "Systems Engineering"}</h4>
+                      <p className="text-xs text-muted-foreground">{isSpanish ? "Graduación: junio 2026" : "Graduation June 2026"}</p>
                       <div className="mt-1">
                         <span className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
                           GPA: 4.6/5.0
@@ -497,8 +601,8 @@ export default function Portfolio() {
                       <GraduationCap className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm">Data Science</h4>
-                      <p className="text-xs text-muted-foreground">Graduation June 2027</p>
+                      <h4 className="font-semibold text-sm">{isSpanish ? "Ciencia de Datos" : "Data Science"}</h4>
+                      <p className="text-xs text-muted-foreground">{isSpanish ? "Graduación: junio 2027" : "Graduation June 2027"}</p>
                       <div className="mt-1">
                         <span className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
                           GPA: 4.7/5.0
@@ -516,11 +620,11 @@ export default function Portfolio() {
                       <Briefcase className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm">Employment Status</h4>
-                      <p className="text-xs text-muted-foreground">Freelance Developer</p>
+                      <h4 className="font-semibold text-sm">{isSpanish ? "Estado laboral" : "Employment Status"}</h4>
+                      <p className="text-xs text-muted-foreground">{isSpanish ? "Desarrolladora freelance" : "Freelance Developer"}</p>
                       <div className="mt-1">
                         <span className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
-                          Available for Projects
+                          {isSpanish ? "Disponible para proyectos" : "Available for Projects"}
                         </span>
                       </div>
                     </div>
@@ -535,12 +639,12 @@ export default function Portfolio() {
       {/* CV Section */}
       <section id="cv" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">My Journey</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">{isSpanish ? "Mi recorrido" : "My Journey"}</h2>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle className="font-sans">Professional Experience</CardTitle>
+                <CardTitle className="font-sans">{isSpanish ? "Experiencia profesional" : "Professional Experience"}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="border-l-2 border-primary pl-4">
@@ -558,21 +662,35 @@ export default function Portfolio() {
                     </a>
                   </p>
                   <p className="text-muted-foreground mt-2">
-                    Spiriwors is a PRANA project where the creative direction had to feel just as intentional in the browser as on paper. I owned the frontend: shaping a cohesive, responsive experience with Next.js, React, TypeScript, and Tailwind CSS, and keeping interactions snappy as we iterated. As the frontend developer, my impact was in translation—turning stakeholder and artistic feedback into reusable components, solid responsive layouts, and a performance-minded architecture that reduced rework and made the UI easier to extend without rewiring the whole app.
+                    {isSpanish
+                      ? "Spiriwors es un proyecto de PRANA donde la dirección creativa debía sentirse tan intencional en el navegador como en el papel. Lideré el frontend: construyendo una experiencia coherente y responsive con Next.js, React, TypeScript y Tailwind CSS, y manteniendo interacciones ágiles durante cada iteración. Como desarrolladora frontend, mi impacto estuvo en traducir el feedback de stakeholders y del equipo creativo en componentes reutilizables, layouts sólidos y una arquitectura orientada al rendimiento que redujo retrabajo y facilitó extender la interfaz sin rehacer toda la aplicación."
+                      : "Spiriwors is a PRANA project where the creative direction had to feel just as intentional in the browser as on paper. I owned the frontend: shaping a cohesive, responsive experience with Next.js, React, TypeScript, and Tailwind CSS, and keeping interactions snappy as we iterated. As the frontend developer, my impact was in translation—turning stakeholder and artistic feedback into reusable components, solid responsive layouts, and a performance-minded architecture that reduced rework and made the UI easier to extend without rewiring the whole app."}
                   </p>
                 </div>
                 <div className="border-l-2 border-primary pl-4">
-                  <h3 className="font-sans font-semibold text-lg">Administrative Monitor</h3>
-                  <p className="text-secondary font-medium">Pontifical Xavierian University • Bogotá • 2025</p>
+                  <h3 className="font-sans font-semibold text-lg">{isSpanish ? "Monitora administrativa" : "Administrative Monitor"}</h3>
+                  <p className="text-secondary font-medium">
+                    {isSpanish
+                      ? "Pontificia Universidad Javeriana • Bogotá • 2025"
+                      : "Pontifical Xavierian University • Bogotá • 2025"}
+                  </p>
                   <p className="text-muted-foreground mt-2">
-                    Provided technical and engineering support in academic processes, managed ABET accreditation documentation, and developed monitoring reports with Excel tools.
+                    {isSpanish
+                      ? "Brindé apoyo técnico y de ingeniería en procesos académicos, gestioné documentación de acreditación ABET y elaboré reportes de seguimiento con herramientas de Excel."
+                      : "Provided technical and engineering support in academic processes, managed ABET accreditation documentation, and developed monitoring reports with Excel tools."}
                   </p>
                 </div>
                 <div className="border-l-2 border-primary pl-4">
-                  <h3 className="font-sans font-semibold text-lg">Academic Monitor</h3>
-                  <p className="text-secondary font-medium">Pontifical Xavierian University • Bogotá • 2024</p>
+                  <h3 className="font-sans font-semibold text-lg">{isSpanish ? "Monitora académica" : "Academic Monitor"}</h3>
+                  <p className="text-secondary font-medium">
+                    {isSpanish
+                      ? "Pontificia Universidad Javeriana • Bogotá • 2024"
+                      : "Pontifical Xavierian University • Bogotá • 2024"}
+                  </p>
                   <p className="text-muted-foreground mt-2">
-                    Provided programming tutorials in C, C++, and Java, designed interactive workshops, and monitored student progress with personalized support.
+                    {isSpanish
+                      ? "Ofrecí tutorías de programación en C, C++ y Java, diseñé talleres interactivos y realicé seguimiento al progreso estudiantil con apoyo personalizado."
+                      : "Provided programming tutorials in C, C++, and Java, designed interactive workshops, and monitored student progress with personalized support."}
                   </p>
                 </div>
               </CardContent>
@@ -580,27 +698,35 @@ export default function Portfolio() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="font-sans">Education</CardTitle>
+                <CardTitle className="font-sans">{isSpanish ? "Educación" : "Education"}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="border-l-2 border-secondary pl-4">
-                  <h3 className="font-sans font-semibold text-lg">Data Science</h3>
-                  <p className="text-primary font-medium">Pontifical Xavierian University • Graduation: 2026</p>
+                  <h3 className="font-sans font-semibold text-lg">{isSpanish ? "Ciencia de Datos" : "Data Science"}</h3>
+                  <p className="text-primary font-medium">
+                    {isSpanish ? "Pontificia Universidad Javeriana • Graduación: 2026" : "Pontifical Xavierian University • Graduation: 2026"}
+                  </p>
                   <p className="text-muted-foreground mt-2">
                     GPA: 4.7/5
                   </p>
                   <p className="text-muted-foreground mt-2">
-                    Relevant coursework: Introduction to artificial intelligence, data structures, distributed systems.
+                    {isSpanish
+                      ? "Cursos relevantes: Introducción a la inteligencia artificial, estructuras de datos, sistemas distribuidos."
+                      : "Relevant coursework: Introduction to artificial intelligence, data structures, distributed systems."}
                   </p>
                 </div>
                 <div className="border-l-2 border-secondary pl-4">
-                  <h3 className="font-sans font-semibold text-lg">Systems Engineering</h3>
-                  <p className="text-primary font-medium">Pontifical Xavierian University • Graduation: 2026</p>
+                  <h3 className="font-sans font-semibold text-lg">{isSpanish ? "Ingeniería de Sistemas" : "Systems Engineering"}</h3>
+                  <p className="text-primary font-medium">
+                    {isSpanish ? "Pontificia Universidad Javeriana • Graduación: 2026" : "Pontifical Xavierian University • Graduation: 2026"}
+                  </p>
                   <p className="text-muted-foreground mt-2">
                     GPA: 4.6/5
                   </p>
                   <p className="text-muted-foreground mt-2">
-                    Relevant coursework: Operating systems, software architecture, mobile development, web development.
+                    {isSpanish
+                      ? "Cursos relevantes: Sistemas operativos, arquitectura de software, desarrollo móvil y desarrollo web."
+                      : "Relevant coursework: Operating systems, software architecture, mobile development, web development."}
                   </p>
                 </div>
               </CardContent>
@@ -609,9 +735,9 @@ export default function Portfolio() {
 
           <div className="text-center">
             <Button size="lg" className="font-medium" asChild>
-              <a href="/Tatiana_Vivas_CV.pdf" download="Tatiana_Vivas_CV.pdf">
+              <a href={cvHref} download={cvFileName}>
                 <Download className="mr-2 h-4 w-4" />
-                Download Complete CV
+                {isSpanish ? "Descargar CV completo" : "Download Complete CV"}
               </a>
             </Button>
           </div>
@@ -621,7 +747,7 @@ export default function Portfolio() {
       {/* Skills Section */}
       <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">Technical Skills</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">{isSpanish ? "Habilidades técnicas" : "Technical Skills"}</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skillCategories.map((category, categoryIndex) => (
@@ -660,12 +786,14 @@ export default function Portfolio() {
       {/* Projects Section */}
       <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-4">Recent Projects</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-4">{isSpanish ? "Proyectos recientes" : "Recent Projects"}</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            A selection of my most outstanding works in data science and software development
+            {isSpanish
+              ? "Una selección de mis trabajos más destacados en ciencia de datos y desarrollo de software"
+              : "A selection of my most outstanding works in data science and software development"}
           </p>
 
-          {projects
+          {renderedProjects
             .filter((project) => project.highlight)
             .map((project, index) => (
               <Card
@@ -707,7 +835,7 @@ export default function Portfolio() {
                     <div className="flex gap-6 mb-6 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <span className="text-primary">📅</span>
-                        <span>{project.duration} Delivery</span>
+                        <span>{project.duration} {isSpanish ? "de desarrollo" : "Delivery"}</span>
                       </div>
                       {project.team &&
                         (project.contributors && project.contributors.length > 0 ? (
@@ -722,7 +850,7 @@ export default function Portfolio() {
                               className="flex items-center gap-2 hover:text-primary transition-colors"
                             >
                               <Users className="h-4 w-4 text-primary" />
-                              <span>{project.team} Team</span>
+                              <span>{project.team} {isSpanish ? "equipo" : "Team"}</span>
                               <ChevronDown
                                 className={`h-3 w-3 transition-transform ${openContributorsKey === project.title ? "rotate-180" : ""}`}
                               />
@@ -750,7 +878,7 @@ export default function Portfolio() {
                         ) : (
                           <div className="flex items-center gap-2">
                             <Users className="h-4 w-4 text-primary" />
-                            <span>{project.team} Team</span>
+                            <span>{project.team} {isSpanish ? "equipo" : "Team"}</span>
                           </div>
                         ))}
                     </div>
@@ -761,7 +889,7 @@ export default function Portfolio() {
                         <Button size="sm" asChild className="bg-primary hover:bg-primary/90">
                           <a href={project.demo} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="h-4 w-4 mr-2" />
-                            Try it Live
+                            {isSpanish ? "Probar en vivo" : "Try it Live"}
                           </a>
                         </Button>
                       )}
@@ -771,9 +899,9 @@ export default function Portfolio() {
                         asChild
                         className="border-primary text-primary hover:bg-primary/10 bg-transparent"
                       >
-                        <a href={project.frontendRepo || project.github} target="_blank" rel="noopener noreferrer">
+                        <a href={project.frontendRepo || project.github || "#"} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4 mr-2" />
-                          Frontend Source Code
+                          {isSpanish ? "Código fuente frontend" : "Frontend Source Code"}
                         </a>
                       </Button>
                       <Button
@@ -782,9 +910,9 @@ export default function Portfolio() {
                         asChild
                         className="border-primary text-primary hover:bg-primary/10 bg-transparent"
                       >
-                        <a href={project.backendRepo || project.github} target="_blank" rel="noopener noreferrer">
+                        <a href={project.backendRepo || project.github || "#"} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4 mr-2" />
-                          Backend Source Code
+                          {isSpanish ? "Código fuente backend" : "Backend Source Code"}
                         </a>
                       </Button>
                     </div>
@@ -795,7 +923,7 @@ export default function Portfolio() {
 
           {/* Featured Projects */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {projects
+            {renderedProjects
               .filter((project) => project.featured && !project.highlight)
               .map((project, index) => (
                 <Card key={index} className="hover:shadow-xl transition-all hover:-translate-y-1 border-primary/20">
@@ -827,7 +955,7 @@ export default function Portfolio() {
                         {project.duration && (
                           <div className="flex items-center gap-2">
                             <span className="text-primary">📅</span>
-                            <span>{project.duration} Delivery</span>
+                            <span>{project.duration} {isSpanish ? "de desarrollo" : "Delivery"}</span>
                           </div>
                         )}
                         {project.team &&
@@ -843,7 +971,7 @@ export default function Portfolio() {
                                 className="flex items-center gap-2 hover:text-primary transition-colors"
                               >
                                 <Users className="h-4 w-4 text-primary" />
-                                <span>{project.team} Team</span>
+                                <span>{project.team} {isSpanish ? "equipo" : "Team"}</span>
                                 <ChevronDown
                                   className={`h-3 w-3 transition-transform ${openContributorsKey === project.title ? "rotate-180" : ""}`}
                                 />
@@ -871,7 +999,7 @@ export default function Portfolio() {
                           ) : (
                             <div className="flex items-center gap-2">
                               <Users className="h-4 w-4 text-primary" />
-                              <span>{project.team} Team</span>
+                              <span>{project.team} {isSpanish ? "equipo" : "Team"}</span>
                             </div>
                           ))}
                       </div>
@@ -881,7 +1009,7 @@ export default function Portfolio() {
                         <Button variant="outline" size="sm" asChild>
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
                             <Github className="h-4 w-4 mr-2" />
-                            Code
+                            {isSpanish ? "Código" : "Code"}
                           </a>
                         </Button>
                       )}
@@ -900,12 +1028,14 @@ export default function Portfolio() {
           </div>
 
           {/* Personal Projects */}
-          <h3 className="font-sans text-2xl md:text-3xl font-bold text-center mb-4 mt-4">Personal Projects</h3>
+          <h3 className="font-sans text-2xl md:text-3xl font-bold text-center mb-4 mt-4">{isSpanish ? "Proyectos personales" : "Personal Projects"}</h3>
           <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Side projects I ship end-to-end—frontend tooling, data on the wire, and polished UX.
+            {isSpanish
+              ? "Proyectos que desarrollo de punta a punta: frontend, datos y experiencias de usuario pulidas."
+              : "Side projects I ship end-to-end—frontend tooling, data on the wire, and polished UX."}
           </p>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {projects
+            {renderedProjects
               .filter((project) => project.personal)
               .map((project) => (
                 <Card key={project.title} className="hover:shadow-xl transition-all hover:-translate-y-1 border-primary/20">
@@ -949,7 +1079,7 @@ export default function Portfolio() {
                                 className="flex items-center gap-2 hover:text-primary transition-colors"
                               >
                                 <Users className="h-4 w-4 text-primary" />
-                                <span>{project.team} Team</span>
+                                <span>{project.team} {isSpanish ? "equipo" : "Team"}</span>
                                 <ChevronDown
                                   className={`h-3 w-3 transition-transform ${openContributorsKey === project.title ? "rotate-180" : ""}`}
                                 />
@@ -976,7 +1106,7 @@ export default function Portfolio() {
                           ) : (
                             <div className="flex items-center gap-2">
                               <Users className="h-4 w-4 text-primary" />
-                              <span>{project.team} Team</span>
+                              <span>{project.team} {isSpanish ? "equipo" : "Team"}</span>
                             </div>
                           ))}
                       </div>
@@ -986,7 +1116,7 @@ export default function Portfolio() {
                         <Button variant="outline" size="sm" asChild>
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
                             <Github className="h-4 w-4 mr-2" />
-                            Code
+                            {isSpanish ? "Código" : "Code"}
                           </a>
                         </Button>
                       )}
@@ -1006,7 +1136,7 @@ export default function Portfolio() {
 
           {/* Other Projects */}
           <div className="grid md:grid-cols-2 gap-6">
-            {projects
+            {renderedProjects
               .filter((project) => !project.featured && !project.personal)
               .map((project, index) => (
                 <Card key={index} className="hover:shadow-lg transition-all hover:-translate-y-1">
@@ -1024,9 +1154,9 @@ export default function Portfolio() {
                     </div>
                     <div className="flex gap-3">
                       <Button variant="ghost" size="sm" asChild>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <a href={project.github || "#"} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4 mr-2" />
-                          Code
+                          {isSpanish ? "Código" : "Code"}
                         </a>
                       </Button>
                       {project.demo && (
@@ -1047,7 +1177,7 @@ export default function Portfolio() {
             <Button variant="outline" size="lg" asChild>
               <a href="https://github.com/Tatisvivas" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-5 w-5" />
-                View all my projects on GitHub
+                {isSpanish ? "Ver todos mis proyectos en GitHub" : "View all my projects on GitHub"}
               </a>
             </Button>
           </div>
@@ -1057,7 +1187,7 @@ export default function Portfolio() {
       {/* Interests Section */}
       <section id="interests" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">My interests</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">{isSpanish ? "Mis intereses" : "My interests"}</h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
             {personalInterests.map((interest, index) => (
@@ -1082,26 +1212,30 @@ export default function Portfolio() {
       {/* Contact Section */}
       <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">Let's Connect!</h2>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold text-center mb-12">{isSpanish ? "¡Conectemos!" : "Let's Connect!"}</h2>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="font-sans text-xl font-semibold mb-6">Send me a message</h3>
+              <h3 className="font-sans text-xl font-semibold mb-6">{isSpanish ? "Envíame un mensaje" : "Send me a message"}</h3>
               <form className="space-y-4" onSubmit={handleSubmit}>
-                <Input placeholder="Your name" name="name" value={contactName} onChange={(e) => setContactName(e.target.value)} required />
-                <Input type="email" placeholder="Your email" name="email" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} required />
-                <Textarea placeholder="Your message" rows={5} name="message" value={contactMessage} onChange={(e) => setContactMessage(e.target.value)} required />
+                <Input placeholder={isSpanish ? "Tu nombre" : "Your name"} name="name" value={contactName} onChange={(e) => setContactName(e.target.value)} required />
+                <Input type="email" placeholder={isSpanish ? "Tu correo" : "Your email"} name="email" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} required />
+                <Textarea placeholder={isSpanish ? "Tu mensaje" : "Your message"} rows={5} name="message" value={contactMessage} onChange={(e) => setContactMessage(e.target.value)} required />
                 <Button className="w-full font-medium" type="submit" disabled={isSending}>
-                  {isSending ? "Sending..." : "Send Message"}
+                  {isSending ? (isSpanish ? "Enviando..." : "Sending...") : isSpanish ? "Enviar mensaje" : "Send Message"}
                   <Mail className="ml-2 h-4 w-4" />
                 </Button>
-                {sendResult === "success" && <p className="text-sm text-green-600">Message sent! I'll respond soon.</p>}
-                {sendResult === "error" && <p className="text-sm text-red-600">There was a problem. Please try again.</p>}
+                {sendResult === "success" && (
+                  <p className="text-sm text-green-600">{isSpanish ? "¡Mensaje enviado! Te responderé pronto." : "Message sent! I'll respond soon."}</p>
+                )}
+                {sendResult === "error" && (
+                  <p className="text-sm text-red-600">{isSpanish ? "Hubo un problema. Inténtalo de nuevo." : "There was a problem. Please try again."}</p>
+                )}
               </form>
             </div>
 
             <div>
-              <h3 className="font-sans text-xl font-semibold mb-6">Follow me on</h3>
+              <h3 className="font-sans text-xl font-semibold mb-6">{isSpanish ? "Sígueme en" : "Follow me on"}</h3>
               <div className="space-y-4">
                 <a href="#" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
                   <Github className="h-6 w-6 text-primary" />
@@ -1124,7 +1258,9 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-border">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-muted-foreground">© 2025 Tatiana Vivas. Made with ❤️ and Next.js</p>
+          <p className="text-muted-foreground">
+            {isSpanish ? "© 2025 Tatiana Vivas. Hecho con ❤️ y Next.js" : "© 2025 Tatiana Vivas. Made with ❤️ and Next.js"}
+          </p>
         </div>
       </footer>
     </div>
